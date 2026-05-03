@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Roboto } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/lib/i18n";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -28,7 +29,11 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${roboto.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
+      </body>
     </html>
   );
 }
