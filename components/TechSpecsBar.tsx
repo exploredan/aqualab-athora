@@ -1,26 +1,31 @@
+"use client";
+
 import { Shield, Waves, Wind, Zap } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 export default function TechSpecsBar() {
+  const { lang } = useLanguage();
+  
   const specs = [
     {
       icon: <Shield className="w-5 h-5" fill="currentColor" strokeWidth={1} />,
       title: "UPF 50+",
-      subtitle: "UV PROTECTION"
+      subtitle: lang === "tr" ? "UV KORUMASI" : "UV PROTECTION"
     },
     {
       icon: <Waves className="w-5 h-5" strokeWidth={2} />,
       title: "20K / 20K",
-      subtitle: "WATER RESISTANCE"
+      subtitle: lang === "tr" ? "SU GEÇİRMEZLİK" : "WATER RESISTANCE"
     },
     {
       icon: <Wind className="w-5 h-5" strokeWidth={2} />,
       title: "15K g/m²/24h",
-      subtitle: "BREATHABILITY"
+      subtitle: lang === "tr" ? "NEFES ALABİLİRLİK" : "BREATHABILITY"
     },
     {
       icon: <Zap className="w-5 h-5" fill="currentColor" strokeWidth={1} />,
-      title: "< 15 MINUTES",
-      subtitle: "QUICK DRY"
+      title: lang === "tr" ? "< 15 DAKİKA" : "< 15 MINUTES",
+      subtitle: lang === "tr" ? "HIZLI KURUMA" : "QUICK DRY"
     }
   ];
 

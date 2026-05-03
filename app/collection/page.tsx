@@ -1,5 +1,8 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/lib/i18n";
 
 const categories = ["ALL", "RASHGUARDS", "VESTS", "RACING SHORTS", "HOODIES", "WINDBREAKERS"];
 
@@ -9,6 +12,7 @@ const collectionProducts = [
     name: "PRO-TECH RASHGUARD",
     price: "$120",
     description: "Engineered compression fit for optimal hydrodynamics.",
+    tr_description: "Optimum hidrodinamik için tasarlanmış kompresyon uyumu.",
     tags: ["UV 50+", "4-WAY STRETCH"],
     image: "/Copy_of_Hooded_rashguard_on_202605030418.jpeg"
   },
@@ -17,6 +21,7 @@ const collectionProducts = [
     name: "APEX IMPACT VEST",
     price: "$250",
     description: "High-density foam core with low-profile ergonomic cut.",
+    tr_description: "Düşük profilli ergonomik kesimli yüksek yoğunluklu köpük.",
     tags: ["ISO CERTIFIED", "MODULAR"],
     image: "/save_this_picture_4K_202605030409.jpeg"
   },
@@ -25,12 +30,14 @@ const collectionProducts = [
     name: "AERO RACING SHORTS",
     price: "$95",
     description: "Ultra-lightweight hydrophobic fabric for maximum agility.",
+    tr_description: "Maksimum çeviklik için ultra hafif su itici kumaş.",
     tags: ["QUICK DRY", "WATER REPELLENT"],
     image: "/make_it_more_3D_er_202605030412.jpeg"
   }
 ];
 
 export default function CollectionPage() {
+  const { lang } = useLanguage();
   return (
     <main className="min-h-screen bg-white font-sans text-black selection:bg-zinc-200 selection:text-black">
       <Navbar />
@@ -40,10 +47,12 @@ export default function CollectionPage() {
         {/* Header Section */}
         <div className="max-w-2xl mb-12">
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight text-[#1A1A1A] mb-6">
-            Collections
+            {lang === "tr" ? "Koleksiyonlar" : "Collections"}
           </h1>
           <p className="text-base text-zinc-600 font-medium leading-relaxed">
-            Engineered for extreme conditions. Our technical apparel combines clinical precision with rugged functionality. Explore the standard in marine performance.
+            {lang === "tr" 
+              ? "Zorlu koşullar için tasarlandı. Teknik giyimimiz, klinik hassasiyeti dayanıklı işlevsellikle birleştiriyor. Deniz performansındaki standardı keşfedin." 
+              : "Engineered for extreme conditions. Our technical apparel combines clinical precision with rugged functionality. Explore the standard in marine performance."}
           </p>
         </div>
 

@@ -2,10 +2,33 @@
 
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-
 import Link from "next/link";
+import { useLanguage } from "@/lib/i18n";
 
 export default function Hero() {
+  const { lang } = useLanguage();
+
+  const texts = {
+    en: {
+      title1: "Defy the",
+      title2: "Elements",
+      subtitle: "Advanced technical apparel engineered for elite performance in sailing, kitesurfing, and rowing. Built to withstand the world's most unforgiving environments.",
+      explore: "Explore Collection",
+      discover: "Discover Technology",
+      scroll: "Scroll"
+    },
+    tr: {
+      title1: "Sınırları",
+      title2: "Aşın",
+      subtitle: "Yelken, uçurtma sörfü ve kürek branşlarında elit düzey performans için özel tasarlanmış üstün teknik giyim. Dünyanın en zorlu doğa koşullarına dayanacak şekilde mühendislikle üretildi.",
+      explore: "Koleksiyonu Keşfet",
+      discover: "Teknolojiyi İncele",
+      scroll: "Kaydır"
+    }
+  };
+
+  const t = texts[lang];
+
   return (
     <div className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
       {/* Background Image / Video Wrapper */}
@@ -29,7 +52,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-tighter leading-[0.9]">
-            Defy the <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-200">Elements</span>
+            {t.title1} <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-200">{t.title2}</span>
           </h1>
         </motion.div>
         
@@ -39,7 +62,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="mt-8 text-base md:text-lg text-zinc-300 max-w-2xl mx-auto font-light leading-relaxed"
         >
-          Advanced technical apparel engineered for elite performance in sailing, kitesurfing, and rowing. Built to withstand the world's most unforgiving environments.
+          {t.subtitle}
         </motion.p>
         
         <motion.div
@@ -49,11 +72,11 @@ export default function Hero() {
           className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link href="/collection" className="bg-white text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all flex items-center justify-center group">
-            Explore Collection
+            {t.explore}
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link href="/technology" className="border border-white/20 text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all backdrop-blur-sm">
-            Discover Technology
+            {t.discover}
           </Link>
         </motion.div>
       </div>
@@ -64,7 +87,7 @@ export default function Hero() {
         transition={{ delay: 1.2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center"
       >
-        <span className="text-white/40 uppercase text-[10px] font-bold tracking-[0.2em] mb-4">Scroll</span>
+        <span className="text-white/40 uppercase text-[10px] font-bold tracking-[0.2em] mb-4">{t.scroll}</span>
         <motion.div 
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}

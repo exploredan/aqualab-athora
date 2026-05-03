@@ -1,8 +1,13 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Sun, ThermometerSnowflake, Droplet, FlaskConical } from "lucide-react";
+import Link from "next/link";
+import { useLanguage } from "@/lib/i18n";
 
 export default function TechnologyPage() {
+  const { lang } = useLanguage();
   return (
     <main className="min-h-screen bg-[#F5F5F5] font-sans selection:bg-blue-500 selection:text-white">
       <Navbar />
@@ -17,11 +22,13 @@ export default function TechnologyPage() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-[#1A1A1A] leading-[1.1] mb-6">
-              ENGINEERED<br/>FOR THE<br/>EXTREMES.
+              {lang === "tr" ? <><span className="text-4xl md:text-6xl">ZORLU KOŞULLAR</span><br/>İÇİN<br/>TASARLANDI.</> : <>ENGINEERED<br/>FOR THE<br/>EXTREMES.</>}
             </h1>
             
             <p className="text-zinc-600 font-medium leading-relaxed max-w-md text-[15px]">
-              Clinical performance meets hydro-technical precision. Our fabrics are lab-tested to withstand the harshest marine environments, providing unparalleled UV defense and thermal regulation.
+              {lang === "tr" 
+                ? "Klinik performans hidroteknik hassasiyetle buluşuyor. Kumaşlarımız, en zorlu deniz ortamlarına dayanmak ve benzersiz UV savunması ile termal düzenleme sağlamak üzere laboratuvarda test edilmiştir."
+                : "Clinical performance meets hydro-technical precision. Our fabrics are lab-tested to withstand the harshest marine environments, providing unparalleled UV defense and thermal regulation."}
             </p>
           </div>
           
@@ -45,7 +52,7 @@ export default function TechnologyPage() {
       {/* Divider & Header */}
       <section className="max-w-[1400px] mx-auto px-4 md:px-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-zinc-200 pb-4 mb-10 gap-4">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#1A1A1A]">CORE TECHNOLOGIES</h2>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#1A1A1A]">{lang === "tr" ? "TEMEL TEKNOLOJİLER" : "CORE TECHNOLOGIES"}</h2>
           <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">SPEC.DOC.01</span>
         </div>
       </section>
@@ -61,14 +68,16 @@ export default function TechnologyPage() {
               <div className="w-10 h-10 bg-[#1A1A1A] flex items-center justify-center rounded-sm mb-6">
                 <Sun className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
-              <h3 className="text-lg font-bold text-[#1A1A1A] mb-3">APEX UV DEFENSE</h3>
+              <h3 className="text-lg font-bold text-[#1A1A1A] mb-3">{lang === "tr" ? "APEX UV SAVUNMASI" : "APEX UV DEFENSE"}</h3>
               <p className="text-sm text-zinc-500 font-medium leading-relaxed mb-10 max-w-sm">
-                UPF 50+ protection engineered at the yarn level. Titanium dioxide particles are embedded within the polymer matrix, ensuring permanent sun blocking that won't wash out.
+                {lang === "tr" 
+                  ? "İplik seviyesinde tasarlanmış UPF 50+ koruması. Titanyum dioksit parçacıkları polimer matrisine gömülerek, yıkanmayla çıkmayan kalıcı güneş engellemesi sağlar." 
+                  : "UPF 50+ protection engineered at the yarn level. Titanium dioxide particles are embedded within the polymer matrix, ensuring permanent sun blocking that won't wash out."}
               </p>
               <div className="mt-auto flex flex-wrap gap-2">
                 <span className="bg-zinc-200/60 px-3 py-1 rounded-full text-[10px] font-bold text-zinc-600">UPF 50+</span>
                 <span className="bg-zinc-200/60 px-3 py-1 rounded-full text-[10px] font-bold text-zinc-600">TiO2 Infused</span>
-                <span className="bg-zinc-200/60 px-3 py-1 rounded-full text-[10px] font-bold text-zinc-600">Permanent</span>
+                <span className="bg-zinc-200/60 px-3 py-1 rounded-full text-[10px] font-bold text-zinc-600">{lang === "tr" ? "Kalıcı" : "Permanent"}</span>
               </div>
             </div>
 
@@ -77,11 +86,13 @@ export default function TechnologyPage() {
               <Droplet className="w-5 h-5 text-orange-500 mb-6" strokeWidth={2} />
               <h3 className="text-lg font-bold text-[#1A1A1A] mb-3">AERO-HYDRO LAMINATE</h3>
               <p className="text-sm text-zinc-500 font-medium leading-relaxed mb-10 max-w-sm">
-                A 3-layer microporous membrane that blocks external water molecules while allowing internal vapor to escape instantly.
+                {lang === "tr" 
+                  ? "Dış su moleküllerini bloke ederken içerideki buharın anında dışarı çıkmasını sağlayan 3 katmanlı mikro gözenekli membran." 
+                  : "A 3-layer microporous membrane that blocks external water molecules while allowing internal vapor to escape instantly."}
               </p>
               <div className="mt-auto pt-4 border-t border-zinc-100 flex flex-col gap-2 relative">
                 <div className="flex justify-between items-end w-full">
-                  <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">BREATHABILITY RATE</span>
+                  <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">{lang === "tr" ? "NEFES ALABİLİRLİK ORANI" : "BREATHABILITY RATE"}</span>
                   <span className="text-sm font-bold text-[#1A1A1A]">20,000g/m²/24h</span>
                 </div>
                 <div className="w-full h-[2px] bg-zinc-100 mt-2">
@@ -96,9 +107,11 @@ export default function TechnologyPage() {
             {/* ISO-THERM MAPPING */}
             <div className="bg-[#0A1128] text-white p-8 rounded-sm flex flex-col overflow-hidden relative flex-1 min-h-[300px]">
               <ThermometerSnowflake className="w-5 h-5 text-white/80 mb-6" strokeWidth={1.5} />
-              <h3 className="text-lg font-bold mb-3">ISO-THERM MAPPING</h3>
+              <h3 className="text-lg font-bold mb-3">{lang === "tr" ? "ISO-THERM HARİTALAMA" : "ISO-THERM MAPPING"}</h3>
               <p className="text-sm text-white/60 font-medium leading-relaxed mb-8 max-w-sm relative z-10">
-                Strategic venting and insulation panels mapped to human vascular architecture for optimal core temperature maintenance.
+                {lang === "tr" 
+                  ? "Optimum çekirdek vücut sıcaklığını korumak için insan damar yapısına eşlenmiş stratejik havalandırma ve yalıtım panelleri." 
+                  : "Strategic venting and insulation panels mapped to human vascular architecture for optimal core temperature maintenance."}
               </p>
               <div className="mt-auto w-full aspect-[2/1] relative border border-white/10 rounded-sm overflow-hidden opacity-90 mt-4">
                 <img 
@@ -146,6 +159,38 @@ export default function TechnologyPage() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* 360 Video CTA Section */}
+      <section className="max-w-[1400px] mx-auto px-4 md:px-8 pb-32">
+        <div className="bg-[#0A1128] rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 shadow-2xl">
+          {/* Video Side */}
+          <div className="relative h-[60vh] lg:h-auto">
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-90"
+            >
+              <source src="/slowly_turing_the_product_202605030405.mp4" type="video/mp4" />
+            </video>
+          </div>
+          {/* CTA Side */}
+          <div className="p-12 md:p-20 flex flex-col justify-center bg-[#0A1128] text-white">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+              {lang === "tr" ? "360° PERFORMANS." : "360° PERFORMANCE."}
+            </h2>
+            <p className="text-zinc-400 font-medium leading-relaxed mb-10 max-w-md">
+              {lang === "tr" 
+                ? "Her dikiş, her kıvrım hidrodinamik verimliliği maksimize etmek için hassasiyetle haritalandırıldı. Deniz giyiminde yeni standardı belirleyen mühendisliğe tanık olun." 
+                : "Every seam, every contour is precisely mapped to maximize hydro-dynamic efficiency. Witness the engineering that sets a new standard for marine apparel."}
+            </p>
+            <Link href="/collection" className="bg-white text-[#0A1128] px-8 py-4 w-max rounded-full font-bold uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all flex items-center gap-3">
+              {lang === "tr" ? "Koleksiyonu İncele" : "Shop The Collection"}
+            </Link>
+          </div>
         </div>
       </section>
 

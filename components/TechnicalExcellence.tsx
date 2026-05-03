@@ -1,6 +1,11 @@
+"use client";
+
 import { Droplet, Sun, Wind } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 export default function TechnicalExcellence() {
+  const { lang } = useLanguage();
+
   return (
     <section className="py-24 bg-[#FAFAFA]">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -8,10 +13,10 @@ export default function TechnicalExcellence() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-4 mb-10 gap-4">
           <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-[#1A1A1A]">
-            Technical Excellence
+            {lang === "tr" ? "Teknik Mükemmellik" : "Technical Excellence"}
           </h2>
           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
-            Lab-Grade Precision
+            {lang === "tr" ? "Laboratuvar Düzeyi Hassasiyet" : "Lab-Grade Precision"}
           </span>
         </div>
 

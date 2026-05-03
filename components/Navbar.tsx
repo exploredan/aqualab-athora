@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Search, User, ShoppingBag, Menu, X, ChevronRight, ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/lib/i18n";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { lang, setLang } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +18,12 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navLinks = [
+    { key: "Collection", en: "Collection", tr: "Koleksiyon", href: "/collection" },
+    { key: "Technical", en: "Technical", tr: "Teknoloji", href: "/technology" },
+    { key: "Story", en: "Story", tr: "Hikaye", href: "/#story" }
+  ];
 
   return (
     <>
@@ -38,13 +46,13 @@ export default function Navbar() {
               </svg>
             </Link>
             <div className="hidden md:flex space-x-7">
-              {["Collection", "Technical", "Story"].map((item) => (
+              {navLinks.map((item) => (
                 <Link
-                  key={item}
-                  href={item === "Collection" ? "/collection" : item === "Technical" ? "/technology" : `/#${item.toLowerCase()}`}
+                  key={item.key}
+                  href={item.href}
                   className="text-zinc-600 hover:text-black transition-colors text-[15px] font-medium"
                 >
-                  {item}
+                  {lang === "tr" ? item.tr : item.en}
                 </Link>
               ))}
             </div>
@@ -52,9 +60,12 @@ export default function Navbar() {
 
           {/* Right Section */}
           <div className="hidden md:flex items-center gap-6">
-            <div className="flex items-center gap-2 bg-zinc-100/80 px-3 py-1.5 rounded-full text-[11px] font-bold text-zinc-600 cursor-pointer hover:bg-zinc-200 transition-colors tracking-wide">
-              <span className="text-sm leading-none">🇺🇸</span>
-              <span>USD $ / EN</span>
+            <div 
+              onClick={() => setLang(lang === "en" ? "tr" : "en")}
+              className="flex items-center gap-2 bg-zinc-100/80 px-3 py-1.5 rounded-full text-[11px] font-bold text-zinc-600 cursor-pointer hover:bg-zinc-200 transition-colors tracking-wide select-none"
+            >
+              <span className="text-sm leading-none">{lang === "tr" ? "🇹🇷" : "🇬🇧"}</span>
+              <span>{lang === "tr" ? "TR" : "EN"}</span>
               <svg className="w-3 h-3 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
               </svg>

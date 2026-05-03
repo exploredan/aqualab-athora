@@ -3,28 +3,30 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-
-const cards = [
-  {
-    title: "Vests",
-    image: "/save_this_picture_4K_202605030409.jpeg",
-  },
-  {
-    title: "Rashguards",
-    image: "/change_background_to_this_color_202605030441.jpeg",
-  },
-  {
-    title: "T-Shirts",
-    image: "/just_leave_the_tshirt_and_202605030420.jpeg",
-  },
-  {
-    title: "Bottoms",
-    image: "/make_it_more_3D_er_202605030412.jpeg",
-  }
-];
+import { useLanguage } from "@/lib/i18n";
 
 export default function CategoryCarousel() {
+  const { lang } = useLanguage();
   const targetRef = useRef<HTMLDivElement>(null);
+
+  const cards = [
+    {
+      title: lang === "tr" ? "Yelekler" : "Vests",
+      image: "/save_this_picture_4K_202605030409.jpeg",
+    },
+    {
+      title: lang === "tr" ? "Rashguardlar" : "Rashguards",
+      image: "/change_background_to_this_color_202605030441.jpeg",
+    },
+    {
+      title: lang === "tr" ? "Tişörtler" : "T-Shirts",
+      image: "/just_leave_the_tshirt_and_202605030420.jpeg",
+    },
+    {
+      title: lang === "tr" ? "Şortlar" : "Bottoms",
+      image: "/make_it_more_3D_er_202605030412.jpeg",
+    }
+  ];
   
   // Track the scroll progress of this specific section
   const { scrollYProgress } = useScroll({
@@ -55,13 +57,15 @@ export default function CategoryCarousel() {
           className="absolute left-8 md:left-24 max-w-sm z-0 origin-left"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#4A3B42] tracking-tight mb-4">
-            View products
+            {lang === "tr" ? "Ürünleri İncele" : "View products"}
           </h2>
           <p className="text-sm text-zinc-500 mb-8 font-medium leading-relaxed pr-4">
-            Explore our latest collection of high-performance technical gear, engineered to push your limits in extreme conditions.
+            {lang === "tr" 
+              ? "En zorlu koşullarda sınırlarınızı zorlamak için tasarlanmış yüksek performanslı teknik ekipman koleksiyonumuzu keşfedin." 
+              : "Explore our latest collection of high-performance technical gear, engineered to push your limits in extreme conditions."}
           </p>
           <button className="flex items-center gap-2 bg-[#524449] text-white px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-[#3E3236] transition-colors group">
-            All categories 
+            {lang === "tr" ? "Tüm Kategoriler" : "All categories"} 
             <span className="bg-white text-[#524449] rounded-full p-0.5 group-hover:scale-110 transition-transform">
               <ArrowUpRight size={14} strokeWidth={2.5} />
             </span>

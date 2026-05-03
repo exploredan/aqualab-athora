@@ -15,12 +15,12 @@ export default function Home() {
       <Navbar />
       <Hero />
       <TechSpecsBar />
+      <ProductVideo />
       <CategoryCarousel />
       <BrandsMarquee />
       <TechnicalExcellence />
       <ShopTheLook />
       <Products />
-      <ProductVideo />
       <Footer />
     </main>
   );
