@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { useLanguage } from "@/lib/i18n";
 
 const looks = [
   {
@@ -49,6 +50,7 @@ const looks = [
 ];
 
 export default function ShopTheLook() {
+  const { lang } = useLanguage();
   const [activeLookIndex, setActiveLookIndex] = useState(0);
   const [activeProductIndex, setActiveProductIndex] = useState(0);
 
@@ -111,9 +113,12 @@ export default function ShopTheLook() {
 
         {/* Product Details (Right) */}
         <div className="flex-1 flex flex-col justify-center lg:pl-8 w-full max-w-lg lg:max-w-none">
-          <p className="text-sm font-medium text-zinc-500 mb-2 font-sans">Shop the look</p>
+          <p className="text-sm font-medium text-zinc-500 mb-2 font-sans">
+            {lang === "tr" ? "Kombini incele" : "Shop the look"}
+          </p>
           <h2 className="text-5xl lg:text-6xl font-bold tracking-tight text-[#4A3B42] mb-12">
-            Unleash your<br/>style potential
+            {lang === "tr" ? "Stil potansiyelinizi" : "Unleash your"}<br/>
+            {lang === "tr" ? "ortaya çıkarın" : "style potential"}
           </h2>
 
           <div className="flex items-center gap-6">

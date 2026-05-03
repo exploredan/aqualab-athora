@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const navLinks = [
     { key: "Collection", en: "Collection", tr: "Koleksiyon", href: "/collection" },
-    { key: "Technical", en: "Technical", tr: "Teknoloji", href: "/technology" },
+    { key: "Technical", en: "Technology", tr: "Teknoloji", href: "/technology" },
     { key: "Story", en: "Story", tr: "Hikaye", href: "/#story" }
   ];
 
@@ -39,11 +39,11 @@ export default function Navbar() {
           {/* Logo & Left Links */}
           <div className="flex items-center gap-10">
             <Link href="/" className="flex items-center">
-              {/* Custom abstract A logo similar to screenshot */}
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3L4 21H8.5L12 13L15.5 21H20L12 3Z" fill="#362C30" />
-                <circle cx="12" cy="13" r="3" fill="#362C30" />
-              </svg>
+              <img 
+                src="/Asset%203.webp" 
+                alt="Aqualab Logo" 
+                className="h-7 w-auto object-contain mix-blend-multiply"
+              />
             </Link>
             <div className="hidden md:flex space-x-7">
               {navLinks.map((item) => (

@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { motion } from "motion/react";
+import { useLanguage } from "@/lib/i18n";
 
 const categories = [
   { id: "rashguards", name: "Rashguards", image: "/Untitled%20(1080%20x%201440%20px).png" },
@@ -50,6 +51,7 @@ const products = [
 ];
 
 export default function Products() {
+  const { lang } = useLanguage();
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -130,14 +132,14 @@ export default function Products() {
                 
                 {product.isNew && (
                   <div className="absolute top-4 right-4 bg-[#84A94B] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-sm">
-                    New
+                    {lang === "tr" ? "YENİ" : "New"}
                   </div>
                 )}
 
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 z-10">
                   <button className="bg-white/60 backdrop-blur-md border border-white/40 text-[#4A3B42] px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.15em] font-bold shadow-sm flex items-center gap-2 hover:bg-white hover:scale-105 transition-all">
                     <Eye className="w-3.5 h-3.5" strokeWidth={1.5} />
-                    Quick view
+                    {lang === "tr" ? "HIZLI BAKIŞ" : "Quick view"}
                   </button>
                 </div>
               </div>

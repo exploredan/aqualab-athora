@@ -110,6 +110,21 @@ export default function CategoryCarousel() {
           <div className="w-[10vw] shrink-0" />
         </motion.div>
 
+        {/* Scroll Indicator */}
+        <motion.div 
+          style={{ opacity: textOpacity }}
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center"
+        >
+          <span className="text-zinc-400 uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
+            {lang === "tr" ? "Kaydır" : "Scroll"}
+          </span>
+          <motion.div 
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="w-[1px] h-16 bg-gradient-to-b from-zinc-400 to-transparent"
+          />
+        </motion.div>
+
       </div>
     </section>
   );

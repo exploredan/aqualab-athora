@@ -4,7 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/lib/i18n";
 
-const categories = ["ALL", "RASHGUARDS", "VESTS", "RACING SHORTS", "HOODIES", "WINDBREAKERS"];
+const categoriesEn = ["ALL", "RASHGUARDS", "VESTS", "RACING SHORTS", "HOODIES", "WINDBREAKERS"];
+const categoriesTr = ["TÜMÜ", "RASHGUARDLAR", "YELEKLER", "YARIŞ ŞORTLARI", "KAPÜŞONLULAR", "RÜZGARLIKLAR"];
 
 const collectionProducts = [
   {
@@ -58,7 +59,7 @@ export default function CollectionPage() {
 
         {/* Categories Tabs */}
         <div className="flex flex-wrap gap-x-8 gap-y-4 border-b border-zinc-200 mb-12">
-          {categories.map((category, idx) => (
+          {(lang === "tr" ? categoriesTr : categoriesEn).map((category, idx) => (
             <button
               key={category}
               className={`pb-4 text-xs font-bold tracking-widest uppercase transition-colors relative ${
@@ -76,10 +77,10 @@ export default function CollectionPage() {
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {collectionProducts.map((product) => (
-            <div key={product.id} className="bg-white border border-zinc-200 p-4 md:p-5 group cursor-pointer hover:shadow-xl transition-all duration-300">
+            <div key={product.id} className="bg-white border border-zinc-200 rounded-3xl p-4 md:p-5 group cursor-pointer hover:shadow-xl transition-all duration-300">
               
               {/* Image Box */}
-              <div className="relative aspect-square bg-[#F0F0F0] overflow-hidden mb-5">
+              <div className="relative aspect-square bg-[#F0F0F0] rounded-2xl overflow-hidden mb-5">
                 <img 
                   src={product.image} 
                   alt={product.name}
@@ -110,7 +111,7 @@ export default function CollectionPage() {
                   </span>
                 </div>
                 <p className="text-[13px] text-zinc-500 font-medium leading-relaxed">
-                  {product.description}
+                  {lang === "tr" ? product.tr_description : product.description}
                 </p>
               </div>
 
