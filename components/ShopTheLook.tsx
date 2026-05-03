@@ -1,0 +1,192 @@
+"use client";
+
+import { useState } from "react";
+import { ArrowUp, ArrowDown } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+
+const looks = [
+  {
+    id: 1,
+    thumbnail: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=300&auto=format&fit=crop",
+    mainImage: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=2000&auto=format&fit=crop",
+    products: [
+      {
+        id: "p1",
+        hotspot: { top: "35%", left: "45%" },
+        brand: "AQUALAB",
+        name: "AeroCore Sports Top",
+        price: "$45.00",
+        image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800&auto=format&fit=crop",
+        colors: ["#D4A373", "#000000"]
+      },
+      {
+        id: "p2",
+        hotspot: { top: "65%", left: "55%" },
+        brand: "AQUALAB",
+        name: "FlexCore Training Leggings",
+        price: "$85.00",
+        image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?q=80&w=800&auto=format&fit=crop",
+        colors: ["#D4A373", "#E3D5CA", "#000000"]
+      }
+    ]
+  },
+  {
+    id: 2,
+    thumbnail: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=300&auto=format&fit=crop",
+    mainImage: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop",
+    products: [
+      {
+        id: "p3",
+        hotspot: { top: "40%", left: "40%" },
+        brand: "AQUALAB",
+        name: "HydroTech Performance Shorts",
+        price: "$55.00",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop",
+        colors: ["#1F2937", "#9CA3AF"]
+      }
+    ]
+  }
+];
+
+export default function ShopTheLook() {
+  const [activeLookIndex, setActiveLookIndex] = useState(0);
+  const [activeProductIndex, setActiveProductIndex] = useState(0);
+
+  const activeLook = looks[activeLookIndex];
+  const activeProduct = activeLook.products[activeProductIndex];
+
+  return (
+    <section className="py-24 bg-white relative">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center lg:items-stretch">
+        
+        {/* Thumbnails (Left) */}
+        <div className="flex flex-row lg:flex-col gap-4 shrink-0 lg:pt-32">
+          {looks.map((look, index) => (
+            <button
+              key={look.id}
+              onClick={() => {
+                setActiveLookIndex(index);
+                setActiveProductIndex(0);
+              }}
+              className={`w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 transition-all duration-300 ${
+                activeLookIndex === index ? "border-[#4A3B42] p-0.5 scale-110" : "border-transparent opacity-60 hover:opacity-100"
+              }`}
+            >
+              <img src={look.thumbnail} alt={`Look ${look.id}`} className="w-full h-full object-cover rounded-full" />
+            </button>
+          ))}
+        </div>
+
+        {/* Main Image (Center) */}
+        <div className="relative w-full lg:w-[45%] shrink-0">
+          <div className="relative w-full aspect-[3/4] md:aspect-[4/5] rounded-[2rem] overflow-hidden bg-zinc-100 shadow-xl">
+            <AnimatePresence mode="wait">
+              <motion.img 
+                key={activeLook.id}
+                src={activeLook.mainImage}
+                alt="Main Look"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5 }}
+                className="w-full h-full object-cover"
+              />
+            </AnimatePresence>
+
+            {/* Hotspots */}
+            {activeLook.products.map((product, idx) => (
+              <button
+                key={product.id}
+                onClick={() => setActiveProductIndex(idx)}
+                style={{ top: product.hotspot.top, left: product.hotspot.left }}
+                className="absolute w-8 h-8 -ml-4 -mt-4 bg-white rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110 z-10"
+              >
+                <div className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                  activeProductIndex === idx ? "bg-[#4A3B42]" : "bg-zinc-300"
+                }`} />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Product Details (Right) */}
+        <div className="flex-1 flex flex-col justify-center lg:pl-8 w-full max-w-lg lg:max-w-none">
+          <p className="text-sm font-medium text-zinc-500 mb-2 font-sans">Shop the look</p>
+          <h2 className="text-5xl lg:text-6xl font-bold tracking-tight text-[#4A3B42] mb-12">
+            Unleash your<br/>style potential
+          </h2>
+
+          <div className="flex items-center gap-6">
+            <div className="bg-white rounded-3xl overflow-hidden p-2 w-full max-w-[320px] group border border-transparent hover:border-zinc-100 hover:shadow-xl transition-all duration-300 cursor-pointer">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeProduct.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-zinc-100 relative">
+                    <img 
+                      src={activeProduct.image} 
+                      alt={activeProduct.name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                  <div className="px-2 pb-2">
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest font-sans">{activeProduct.brand}</span>
+                    <h3 className="text-lg font-bold text-[#4A3B42] mt-1">{activeProduct.name}</h3>
+                    <p className="text-sm font-semibold text-[#4A3B42] mt-2 font-sans">{activeProduct.price}</p>
+                    
+                    <div className="flex gap-2 mt-4">
+                      {activeProduct.colors.map((color, i) => (
+                        <div 
+                          key={i} 
+                          className={`w-5 h-5 rounded-full border-2 ${i === 0 ? 'border-[#4A3B42] p-0.5' : 'border-transparent'}`}
+                        >
+                          <div className="w-full h-full rounded-full border border-zinc-200" style={{ backgroundColor: color }} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Vertical slider control */}
+            {activeLook.products.length > 1 && (
+              <div className="hidden md:flex flex-col items-center justify-between h-36 w-8 rounded-full border border-zinc-200 py-3 shadow-sm bg-white">
+                <button 
+                  onClick={() => setActiveProductIndex((prev) => Math.max(0, prev - 1))}
+                  className={`${activeProductIndex === 0 ? 'text-zinc-200' : 'text-zinc-400 hover:text-black'} transition-colors`}
+                  disabled={activeProductIndex === 0}
+                >
+                  <ArrowUp className="w-3 h-3" />
+                </button>
+                
+                <div className="w-1 h-16 bg-zinc-100 rounded-full relative overflow-hidden my-2">
+                  <div 
+                    className="absolute top-0 w-full bg-[#4A3B42] rounded-full transition-all duration-300"
+                    style={{ 
+                      height: `${100 / activeLook.products.length}%`,
+                      transform: `translateY(${activeProductIndex * 100}%)`
+                    }}
+                  />
+                </div>
+                
+                <button 
+                  onClick={() => setActiveProductIndex((prev) => Math.min(activeLook.products.length - 1, prev + 1))}
+                  className={`${activeProductIndex === activeLook.products.length - 1 ? 'text-zinc-200' : 'text-zinc-400 hover:text-black'} transition-colors`}
+                  disabled={activeProductIndex === activeLook.products.length - 1}
+                >
+                  <ArrowDown className="w-3 h-3" />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+        
+      </div>
+    </section>
+  );
+}
