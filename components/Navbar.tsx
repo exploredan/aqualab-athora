@@ -79,7 +79,14 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center text-[#362C30]">
+          <div className="md:hidden flex items-center gap-4 text-[#362C30]">
+            <div 
+              onClick={() => setLang(lang === "en" ? "tr" : "en")}
+              className="flex items-center gap-1.5 bg-zinc-100/80 px-3 py-1.5 rounded-full text-[11px] font-bold text-zinc-600 cursor-pointer hover:bg-zinc-200 transition-colors tracking-wide select-none"
+            >
+              <span className="text-sm leading-none">{lang === "tr" ? "🇹🇷" : "🇬🇧"}</span>
+              <span>{lang === "tr" ? "TR" : "EN"}</span>
+            </div>
             <button onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X size={26} strokeWidth={1.5} /> : <Menu size={26} strokeWidth={1.5} />}
             </button>
@@ -97,9 +104,9 @@ export default function Navbar() {
             className="fixed inset-0 z-40 bg-white pt-32 px-6"
           >
             <div className="flex flex-col gap-8 text-3xl font-medium text-[#362C30]">
-              {["Shop", "Collections", "Page", "Blog", "Theme"].map((item) => (
-                <Link key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsOpen(false)}>
-                  {item}
+              {navLinks.map((item) => (
+                <Link key={item.key} href={item.href} onClick={() => setIsOpen(false)}>
+                  {lang === "tr" ? item.tr : item.en}
                 </Link>
               ))}
             </div>

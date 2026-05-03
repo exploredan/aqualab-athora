@@ -33,11 +33,15 @@ export default function TechnologyPage() {
           </div>
           
           <div className="relative aspect-square md:aspect-[4/3] rounded-sm overflow-hidden bg-black/5 shadow-xl">
-            <img 
-              src="https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&q=80&w=1200" 
-              alt="Hydrophobic Fabric" 
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
               className="w-full h-full object-cover"
-            />
+            >
+              <source src="/slowly_turing_the_product_202605030405.mp4" type="video/mp4" />
+            </video>
             <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 flex items-center gap-3 text-xs font-semibold text-zinc-800 shadow-sm border border-white/40 rounded-sm">
               <FlaskConical className="w-4 h-4 text-orange-500" strokeWidth={2} />
               <div className="flex flex-col">
@@ -167,15 +171,11 @@ export default function TechnologyPage() {
         <div className="bg-[#0A1128] rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 shadow-2xl">
           {/* Video Side */}
           <div className="relative h-[60vh] lg:h-auto">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-90"
-            >
-              <source src="/slowly_turing_the_product_202605030405.mp4" type="video/mp4" />
-            </video>
+            <img 
+              src="https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&q=80&w=1200" 
+              alt="Hydrophobic Fabric" 
+              className="absolute inset-0 w-full h-full object-cover opacity-80"
+            />
           </div>
           {/* CTA Side */}
           <div className="p-12 md:p-20 flex flex-col justify-center bg-[#0A1128] text-white">
