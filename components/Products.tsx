@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { motion } from "motion/react";
 import { useLanguage } from "@/lib/i18n";
+import Link from "next/link";
 
 const categories = [
   { id: "rashguards", name: "Rashguards", image: "/Untitled%20(1080%20x%201440%20px).png" },
@@ -15,36 +16,100 @@ const products = [
   {
     id: 1,
     brand: "AQUALAB",
-    name: "AeroCore Rashguard",
-    price: "$120.00",
-    image: "/Copy_of_Hooded_rashguard_on_202605030418.jpeg",
+    nameEn: "Aero Windbreaker",
+    nameTr: "Aero Rüzgarlık (Beyaz)",
+    price: "$180.00",
+    image: "/manken-beyaz-raincoat.jpeg",
     isNew: true,
-    colors: ["#1F2937", "#000000"]
+    colors: ["#FFFFFF", "#F3F4F6"]
   },
   {
     id: 2,
     brand: "AQUALAB",
-    name: "Apex Impact Vest",
-    price: "$250.00",
-    image: "/save_this_picture_4K_202605030409.jpeg",
+    nameEn: "Pro-Tech T-Shirt",
+    nameTr: "Pro-Tech Tişört",
+    price: "$75.00",
+    image: "/manken-görsel.jpeg",
     isNew: false,
     colors: ["#D4A373", "#1F2937", "#000000"]
   },
   {
     id: 3,
     brand: "AQUALAB",
-    name: "Zephyr Racing Shorts",
+    nameEn: "Performance Set",
+    nameTr: "Performans Şort & Tişört",
     price: "$95.00",
-    image: "/make_it_more_3D_er_202605030412.jpeg",
+    image: "/manken%20sort%20tshirt.jpeg",
     isNew: false,
     colors: ["#4B5563", "#D1D5DB"]
   },
   {
     id: 4,
     brand: "AQUALAB",
-    name: "Thermal Base Layer",
+    nameEn: "Storm Windbreaker",
+    nameTr: "Storm Rüzgarlık (Siyah)",
+    price: "$195.00",
+    image: "/manken-siyah-raincoat.jpeg",
+    isNew: true,
+    colors: ["#000000", "#1F2937"]
+  },
+  {
+    id: 5,
+    brand: "AQUALAB",
+    nameEn: "Core Impact Vest",
+    nameTr: "Core Darbe Yeleği",
+    price: "$185.00",
+    image: "/manken-siyah-vest.jpeg",
+    isNew: false,
+    colors: ["#000000"]
+  },
+  {
+    id: 6,
+    brand: "AQUALAB",
+    nameEn: "Aero Das Vest",
+    nameTr: "Aero Das Yelek",
+    price: "$110.00",
+    image: "/manken-vest-das.jpeg",
+    isNew: true,
+    colors: ["#1F2937"]
+  },
+  {
+    id: 7,
+    brand: "AQUALAB",
+    nameEn: "Zephyr Yelek",
+    nameTr: "Zephyr Siyah Yelek",
+    price: "$120.00",
+    image: "/siyah%20manken%20yelek.jpeg",
+    isNew: true,
+    colors: ["#1F2937", "#000000"]
+  },
+  {
+    id: 8,
+    brand: "AQUALAB",
+    nameEn: "Apex Impact Vest",
+    nameTr: "Apex Darbe Yeleği",
+    price: "$250.00",
+    image: "/vest%20closup.jpeg",
+    isNew: false,
+    colors: ["#D4A373", "#1F2937", "#000000"]
+  },
+  {
+    id: 9,
+    brand: "AQUALAB",
+    nameEn: "Zephyr Racing Shorts",
+    nameTr: "Zephyr Yarış Şortu",
+    price: "$95.00",
+    image: "/dekupe%20sort.jpeg",
+    isNew: false,
+    colors: ["#4B5563", "#D1D5DB"]
+  },
+  {
+    id: 10,
+    brand: "AQUALAB",
+    nameEn: "Thermal Base Layer",
+    nameTr: "Termal Tişört",
     price: "$140.00",
-    image: "/just_leave_the_tshirt_and_202605030420.jpeg",
+    image: "/dekupe%20tshirt.jpeg",
     isNew: true,
     colors: ["#000000"]
   }
@@ -118,7 +183,8 @@ export default function Products() {
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
         >
           {products.map((product) => (
-            <div 
+            <Link 
+              href={`/product/${product.id}`}
               key={product.id}
               className="min-w-[280px] sm:min-w-[320px] md:min-w-[350px] bg-white border border-zinc-100 rounded-2xl overflow-hidden snap-start group cursor-pointer hover:shadow-xl transition-all duration-500 flex flex-col"
             >
@@ -126,7 +192,7 @@ export default function Products() {
               <div className="relative w-full aspect-[4/5] bg-[#F7F7F7] overflow-hidden">
                 <img 
                   src={product.image} 
-                  alt={product.name} 
+                  alt={lang === "tr" ? product.nameTr : product.nameEn} 
                   className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
                 />
                 
@@ -150,7 +216,7 @@ export default function Products() {
                   {product.brand}
                 </span>
                 <h3 className="text-[17px] font-medium text-[#4A3B42] mb-1">
-                  {product.name}
+                  {lang === "tr" ? product.nameTr : product.nameEn}
                 </h3>
                 <span className="text-sm font-bold text-[#4A3B42]">
                   {product.price}
@@ -168,7 +234,7 @@ export default function Products() {
                 </div>
               </div>
 
-            </div>
+            </Link>
           ))}
           
           {/* Spacer */}
