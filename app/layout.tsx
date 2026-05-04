@@ -17,6 +17,28 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Aqualab | Technical Watersports Apparel",
   description: "High-performance technical apparel engineered for elite sailing, kitesurfing, and rowing.",
+  openGraph: {
+    title: "Aqualab | Technical Watersports Apparel",
+    description: "High-performance technical apparel engineered for elite sailing, kitesurfing, and rowing.",
+    url: "https://aqualab.com",
+    siteName: "Aqualab",
+    images: [
+      {
+        url: "/thumbnail.webp",
+        width: 1200,
+        height: 630,
+        alt: "Aqualab Technical Apparel",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aqualab | Technical Watersports Apparel",
+    description: "High-performance technical apparel engineered for elite sailing, kitesurfing, and rowing.",
+    images: ["/thumbnail.webp"],
+  },
 };
 
 export default function RootLayout({

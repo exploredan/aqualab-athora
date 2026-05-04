@@ -12,6 +12,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLang] = useState<Language>("en");
   useEffect(() => {
     const saved = localStorage.getItem("aqualab-lang") as Language;
+    // eslint-disable-next-line
     if (saved && (saved === "en" || saved === "tr")) setLang(saved);
   }, []);
   const handleSetLang = (newLang: Language) => {

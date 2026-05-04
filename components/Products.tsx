@@ -135,11 +135,11 @@ export default function Products() {
   return (
     <section className="py-24 bg-white" id="products">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Controls & Categories */}
         <div className="flex items-center justify-between mb-12">
-          
-          <button 
+
+          <button
             onClick={scrollLeft}
             className="w-12 h-12 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-black hover:border-zinc-300 transition-colors shrink-0"
           >
@@ -153,11 +153,10 @@ export default function Products() {
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center gap-3 pr-5 pl-2 py-2 rounded-full transition-all duration-300 shrink-0 ${
-                    isActive 
-                      ? "bg-[#4A3B42] text-white shadow-md" 
-                      : "bg-[#F7F7F7] text-[#4A3B42] hover:bg-[#EFEFEF]"
-                  }`}
+                  className={`flex items-center gap-3 pr-5 pl-2 py-2 rounded-full transition-all duration-300 shrink-0 ${isActive
+                    ? "bg-[#4A3B42] text-white shadow-md"
+                    : "bg-[#F7F7F7] text-[#4A3B42] hover:bg-[#EFEFEF]"
+                    }`}
                 >
                   <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 bg-white">
                     <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
@@ -168,7 +167,7 @@ export default function Products() {
             })}
           </div>
 
-          <button 
+          <button
             onClick={scrollRight}
             className="w-12 h-12 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-black hover:border-zinc-300 transition-colors shrink-0"
           >
@@ -178,24 +177,24 @@ export default function Products() {
         </div>
 
         {/* Carousel */}
-        <div 
+        <div
           ref={carouselRef}
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
         >
           {products.map((product) => (
-            <Link 
+            <Link
               href={`/product/${product.id}`}
               key={product.id}
               className="min-w-[280px] sm:min-w-[320px] md:min-w-[350px] bg-white border border-zinc-100 rounded-2xl overflow-hidden snap-start group cursor-pointer hover:shadow-xl transition-all duration-500 flex flex-col"
             >
               {/* Image Area */}
               <div className="relative w-full aspect-[4/5] bg-[#F7F7F7] overflow-hidden">
-                <img 
-                  src={product.image} 
-                  alt={lang === "tr" ? product.nameTr : product.nameEn} 
+                <img
+                  src={product.image}
+                  alt={lang === "tr" ? product.nameTr : product.nameEn}
                   className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
                 />
-                
+
                 {product.isNew && (
                   <div className="absolute top-4 right-4 bg-[#84A94B] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-sm">
                     {lang === "tr" ? "YENİ" : "New"}
@@ -221,11 +220,11 @@ export default function Products() {
                 <span className="text-sm font-bold text-[#4A3B42]">
                   {product.price}
                 </span>
-                
+
                 <div className="flex gap-2 mt-auto pt-4">
                   {product.colors.map((color, i) => (
-                    <div 
-                      key={i} 
+                    <div
+                      key={i}
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${i === 0 ? 'border-[#4A3B42]' : 'border-transparent'}`}
                     >
                       <div className="w-3.5 h-3.5 rounded-full border border-zinc-200" style={{ backgroundColor: color }} />
@@ -236,11 +235,11 @@ export default function Products() {
 
             </Link>
           ))}
-          
+
           {/* Spacer */}
           <div className="min-w-[4vw] shrink-0" />
         </div>
-        
+
       </div>
     </section>
   );

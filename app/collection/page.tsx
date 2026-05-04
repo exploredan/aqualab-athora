@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/lib/i18n";
+import Link from "next/link";
 
 const categoriesEn = ["ALL", "RASHGUARDS", "VESTS", "RACING SHORTS", "HOODIES", "WINDBREAKERS"];
 const categoriesTr = ["TÜMÜ", "RASHGUARDLAR", "YELEKLER", "YARIŞ ŞORTLARI", "KAPÜŞONLULAR", "RÜZGARLIKLAR"];
@@ -10,30 +11,103 @@ const categoriesTr = ["TÜMÜ", "RASHGUARDLAR", "YELEKLER", "YARIŞ ŞORTLARI", 
 const collectionProducts = [
   {
     id: 1,
-    name: "PRO-TECH RASHGUARD",
+    name: "AERO WINDBREAKER",
+    tr_name: "AERO RÜZGARLIK",
+    price: "$180",
+    description: "Ultra-lightweight aerodynamic windbreaker for maximum agility.",
+    tr_description: "Maksimum çeviklik için ultra hafif aerodinamik rüzgarlık.",
+    tags: ["ULTRA-LIGHT", "WINDPROOF"],
+    image: "/manken-beyaz-raincoat.jpeg"
+  },
+  {
+    id: 2,
+    name: "PRO-TECH T-SHIRT",
+    tr_name: "PRO-TECH TİŞÖRT",
+    price: "$75",
+    description: "Engineered compression fit for optimal hydrodynamics.",
+    tr_description: "Optimum hidrodinamik için tasarlanmış kompresyon uyumu.",
+    tags: ["UV 50+", "4-WAY STRETCH"],
+    image: "/manken-görsel.jpeg"
+  },
+  {
+    id: 3,
+    name: "PERFORMANCE SET",
+    tr_name: "PERFORMANS SET",
+    price: "$95",
+    description: "Quick dry performance set for water sports.",
+    tr_description: "Su sporları için hızlı kuruyan performans seti.",
+    tags: ["QUICK DRY", "WATER REPELLENT"],
+    image: "/manken%20sort%20tshirt.jpeg"
+  },
+  {
+    id: 4,
+    name: "STORM WINDBREAKER",
+    tr_name: "STORM RÜZGARLIK",
+    price: "$195",
+    description: "Heavy-duty windbreaker built for harsh conditions.",
+    tr_description: "Zorlu koşullar için üretilmiş dayanıklı rüzgarlık.",
+    tags: ["HEAVY DUTY", "THERMAL"],
+    image: "/manken-siyah-raincoat.jpeg"
+  },
+  {
+    id: 5,
+    name: "CORE IMPACT VEST",
+    tr_name: "CORE DARBE YELEĞİ",
+    price: "$185",
+    description: "High-density foam core with low-profile ergonomic cut.",
+    tr_description: "Düşük profilli ergonomik kesimli yüksek yoğunluklu köpük.",
+    tags: ["BREATHABLE", "THERMAL"],
+    image: "/manken-siyah-vest.jpeg"
+  },
+  {
+    id: 6,
+    name: "AERO DAS VEST",
+    tr_name: "AERO DAS YELEK",
+    price: "$110",
+    description: "Ergonomic vest engineered for extreme endurance.",
+    tr_description: "Ekstrem dayanıklılık için mühendislikle üretilmiş ergonomik yelek.",
+    tags: ["ERGONOMIC", "ENDURANCE"],
+    image: "/manken-vest-das.jpeg"
+  },
+  {
+    id: 7,
+    name: "ZEPHYR VEST",
+    tr_name: "ZEPHYR YELEK",
     price: "$120",
     description: "Engineered compression fit for optimal hydrodynamics.",
     tr_description: "Optimum hidrodinamik için tasarlanmış kompresyon uyumu.",
     tags: ["UV 50+", "4-WAY STRETCH"],
-    image: "/Copy_of_Hooded_rashguard_on_202605030418.jpeg"
+    image: "/siyah%20manken%20yelek.jpeg"
   },
   {
-    id: 2,
+    id: 8,
     name: "APEX IMPACT VEST",
+    tr_name: "APEX DARBE YELEĞİ",
     price: "$250",
     description: "High-density foam core with low-profile ergonomic cut.",
     tr_description: "Düşük profilli ergonomik kesimli yüksek yoğunluklu köpük.",
     tags: ["ISO CERTIFIED", "MODULAR"],
-    image: "/save_this_picture_4K_202605030409.jpeg"
+    image: "/vest%20closup.jpeg"
   },
   {
-    id: 3,
+    id: 9,
     name: "AERO RACING SHORTS",
+    tr_name: "AERO YARIŞ ŞORTU",
     price: "$95",
     description: "Ultra-lightweight hydrophobic fabric for maximum agility.",
     tr_description: "Maksimum çeviklik için ultra hafif su itici kumaş.",
     tags: ["QUICK DRY", "WATER REPELLENT"],
-    image: "/make_it_more_3D_er_202605030412.jpeg"
+    image: "/dekupe%20sort.jpeg"
+  },
+  {
+    id: 10,
+    name: "THERMAL BASE LAYER",
+    tr_name: "TERMAL TİŞÖRT",
+    price: "$140",
+    description: "Advanced thermal base layer for extreme cold.",
+    tr_description: "Aşırı soğuklar için gelişmiş termal iç katman.",
+    tags: ["THERMAL", "BREATHABLE"],
+    image: "/dekupe%20tshirt.jpeg"
   }
 ];
 
@@ -77,14 +151,14 @@ export default function CollectionPage() {
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {collectionProducts.map((product) => (
-            <div key={product.id} className="bg-white border border-zinc-200 rounded-3xl p-4 md:p-5 group cursor-pointer hover:shadow-xl transition-all duration-300">
+            <Link href={`/product/${product.id}`} key={product.id} className="bg-white border border-zinc-200 rounded-3xl p-4 md:p-5 group cursor-pointer hover:shadow-xl transition-all duration-300 flex flex-col">
               
               {/* Image Box */}
-              <div className="relative aspect-square bg-[#F0F0F0] rounded-2xl overflow-hidden mb-5">
+              <div className="relative aspect-[4/5] bg-[#F7F7F7] rounded-2xl overflow-hidden mb-5 flex-shrink-0">
                 <img 
                   src={product.image} 
                   alt={product.name}
-                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-multiply" 
+                  className="w-full h-full object-contain p-4 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-multiply" 
                 />
                 
                 {/* Tags */}
@@ -101,21 +175,21 @@ export default function CollectionPage() {
               </div>
 
               {/* Info */}
-              <div>
+              <div className="flex flex-col flex-grow">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold uppercase tracking-tight text-black group-hover:text-zinc-600 transition-colors">
-                    {product.name}
+                  <h3 className="text-lg font-bold uppercase tracking-tight text-black group-hover:text-zinc-600 transition-colors line-clamp-1 pr-2">
+                    {lang === "tr" ? product.tr_name : product.name}
                   </h3>
                   <span className="text-sm font-bold text-black mt-1 shrink-0">
                     {product.price}
                   </span>
                 </div>
-                <p className="text-[13px] text-zinc-500 font-medium leading-relaxed">
+                <p className="text-[13px] text-zinc-500 font-medium leading-relaxed mt-auto">
                   {lang === "tr" ? product.tr_description : product.description}
                 </p>
               </div>
 
-            </div>
+            </Link>
           ))}
         </div>
         

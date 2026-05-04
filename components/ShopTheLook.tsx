@@ -8,42 +8,26 @@ import { useLanguage } from "@/lib/i18n";
 const looks = [
   {
     id: 1,
-    thumbnail: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=300&auto=format&fit=crop",
-    mainImage: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=2000&auto=format&fit=crop",
+    thumbnail: "/manken%20sort%20tshirt.jpeg",
+    mainImage: "/manken%20sort%20tshirt.jpeg",
     products: [
       {
         id: "p1",
-        hotspot: { top: "35%", left: "45%" },
+        hotspot: { top: "35%", left: "50%" },
         brand: "AQUALAB",
-        name: "AeroCore Sports Top",
-        price: "$45.00",
-        image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800&auto=format&fit=crop",
-        colors: ["#D4A373", "#000000"]
+        name: "Pro-Tech Tişört",
+        price: "$75.00",
+        image: "/dekupe%20tshirt.jpeg",
+        colors: ["#FFFFFF", "#000000"]
       },
       {
         id: "p2",
-        hotspot: { top: "65%", left: "55%" },
+        hotspot: { top: "65%", left: "48%" },
         brand: "AQUALAB",
-        name: "FlexCore Training Leggings",
+        name: "Performans Şort",
         price: "$85.00",
-        image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?q=80&w=800&auto=format&fit=crop",
-        colors: ["#D4A373", "#E3D5CA", "#000000"]
-      }
-    ]
-  },
-  {
-    id: 2,
-    thumbnail: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=300&auto=format&fit=crop",
-    mainImage: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop",
-    products: [
-      {
-        id: "p3",
-        hotspot: { top: "40%", left: "40%" },
-        brand: "AQUALAB",
-        name: "HydroTech Performance Shorts",
-        price: "$55.00",
-        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop",
-        colors: ["#1F2937", "#9CA3AF"]
+        image: "/dekupe%20sort.jpeg",
+        colors: ["#1F2937"]
       }
     ]
   }
@@ -131,11 +115,11 @@ export default function ShopTheLook() {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-zinc-100 relative">
+                  <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-[#F7F7F7] relative">
                     <img 
                       src={activeProduct.image} 
                       alt={activeProduct.name} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-contain mix-blend-multiply p-4 group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>
                   <div className="px-2 pb-2">
